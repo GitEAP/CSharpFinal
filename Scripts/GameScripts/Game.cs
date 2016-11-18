@@ -1,17 +1,47 @@
 using System;
 public class Game
 {
-    public static Player player1 = new Player();//Makes a new player.
+    public static Player viking = new Player();//Makes a new player.
 
     //will make things for the game ie: player enemies items etc.
     public void Start()
     {
-        
+
     }
+
+    private string gameState = "Start";
+    private GameState.GameStates toEnum;
     //will start playing game.
     public void Play()
     {
         Console.WriteLine("Game will now Start");
+
+        switch (toEnum)
+        {
+            case GameState.GameStates.Start:
+                Console.WriteLine("Play commands: Play, End, Help");
+                gameState = Console.ReadLine();
+                break;
+            case GameState.GameStates.Died:
+                Console.WriteLine("You Died");
+                break;
+            case GameState.GameStates.End:
+                Console.WriteLine("Game Over");
+
+                break;
+            case GameState.GameStates.Help:
+                Console.WriteLine("What do your need help for. If you can't play this game, you have issues.");
+
+                break;
+            case GameState.GameStates.Play:
+                //plays game
+                break;
+            default:
+                Console.WriteLine("Not a valid command");
+                Play();
+                break;
+        }
+
     }
 }
 // Game
@@ -31,7 +61,8 @@ public class Game
 // enemies
 // battlemode
 // food for health regeneration
-// (optional)trade items to repair armor or get food or upgrade weapon.
+// (optional) player enters a shop as a location
+// randomlly. player chooses to trade items to repair armor or get food or upgrade weapon.
 
 
 // intro to game
