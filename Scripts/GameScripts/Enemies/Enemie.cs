@@ -3,5 +3,7 @@ public class Enemie {
     public int damage;
     public int armor;
     public int weaponEquiped;
+    public int weaponDamage;
+
     
 }

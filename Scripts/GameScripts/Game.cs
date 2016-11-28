@@ -4,18 +4,18 @@ public class Game
     public static Player viking = new Player();//Makes a new player.
 
     //will make things for the game ie: player enemies items etc.
-    public void Start()
+    public Game()
     {
 
     }
 
-    private string gameState = "Start";
-    private GameState.GameStates toEnum;
     //will start playing game.
     public void Play()
     {
         Console.WriteLine("Game will now Start");
+        viking.GetName();
     }
+    
 }
 // Game
 // make new player

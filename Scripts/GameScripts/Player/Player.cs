@@ -14,15 +14,7 @@ public class Player
     //constructor for Player
     public Player()
     {
-
-
-
-
     }
-
-
-
-
 
 
     public string WelcomePlayer(string _name)
@@ -32,7 +24,7 @@ public class Player
 
     public void GetName()
     {
-        Console.WriteLine("Hello World. What is your name?");
+        Console.WriteLine("What is your name?");
         string myString = WelcomePlayer(Console.ReadLine());
         Console.WriteLine(myString);
 
@@ -41,10 +33,6 @@ public class Player
             Console.WriteLine("What is your name?");
             myString = WelcomePlayer(Console.ReadLine());
             Console.WriteLine(myString);
-        }
-        else
-        {
-            //Play();
         }
     }
 
