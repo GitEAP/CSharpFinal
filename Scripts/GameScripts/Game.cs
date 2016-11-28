@@ -15,33 +15,6 @@ public class Game
     public void Play()
     {
         Console.WriteLine("Game will now Start");
-
-        switch (toEnum)
-        {
-            case GameState.GameStates.Start:
-                Console.WriteLine("Play commands: Play, End, Help");
-                gameState = Console.ReadLine();
-                break;
-            case GameState.GameStates.Died:
-                Console.WriteLine("You Died");
-                break;
-            case GameState.GameStates.End:
-                Console.WriteLine("Game Over");
-
-                break;
-            case GameState.GameStates.Help:
-                Console.WriteLine("What do your need help for. If you can't play this game, you have issues.");
-
-                break;
-            case GameState.GameStates.Play:
-                //plays game
-                break;
-            default:
-                Console.WriteLine("Not a valid command");
-                Play();
-                break;
-        }
-
     }
 }
 // Game
