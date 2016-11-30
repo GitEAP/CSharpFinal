@@ -7,26 +7,26 @@ public class pWeaponInventory
 
 
 
-    public void RunList()
-    {
-        listOfWeapons = new List<string>();//turned into an object
-        ChangeList();
-    }
+    // public void RunList()
+    // {
+    //     listOfWeapons = new List<string>();//turned into an object
+    //     ChangeList();
+    // }
 
-    private void ChangeList()
-    {
-        Console.WriteLine(listOfWeapons.Count);
+    // private void ChangeList()
+    // {
+    //     Console.WriteLine(listOfWeapons.Count);
 
-        foreach (string weapon in listOfWeapons)
-        {
-            Console.WriteLine(weapon);
-        }
+    //     foreach (string weapon in listOfWeapons)
+    //     {
+    //         Console.WriteLine(weapon);
+    //     }
 
-        listOfWeapons.Add(Console.ReadLine());//.Add(new Weapon);//for object lists
+    //     listOfWeapons.Add(Console.ReadLine());//.Add(new Weapon);//for object lists
 
-        if (listOfWeapons.Count >= 3)
-        {
-            ChangeList();
-        }
-    }
+    //     if (listOfWeapons.Count >= 3)
+    //     {
+    //         ChangeList();
+    //     }
+    // }
 }

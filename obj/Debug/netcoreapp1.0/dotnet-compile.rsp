@@ -89,8 +89,13 @@
 --reference:C:\Users\10646463\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
 C:\Users\10646463\Desktop\CSharpFinal\Program.cs
 C:\Users\10646463\Desktop\CSharpFinal\Scripts\GameScripts\Game.cs
+C:\Users\10646463\Desktop\CSharpFinal\Scripts\GameScripts\Enemies\Dwarf.cs
 C:\Users\10646463\Desktop\CSharpFinal\Scripts\GameScripts\Enemies\Enemie.cs
+C:\Users\10646463\Desktop\CSharpFinal\Scripts\GameScripts\Enemies\Ogre.cs
 C:\Users\10646463\Desktop\CSharpFinal\Scripts\GameScripts\GamePlay\BattleMode.cs
+C:\Users\10646463\Desktop\CSharpFinal\Scripts\GameScripts\Inventory\Inventories.cs
+C:\Users\10646463\Desktop\CSharpFinal\Scripts\GameScripts\Inventory\pFoodInventory.cs
+C:\Users\10646463\Desktop\CSharpFinal\Scripts\GameScripts\Inventory\pItemInventory.cs
 C:\Users\10646463\Desktop\CSharpFinal\Scripts\GameScripts\Inventory\pWeaponInventory.cs
 C:\Users\10646463\Desktop\CSharpFinal\Scripts\GameScripts\Levels\CaveLevel.cs
 C:\Users\10646463\Desktop\CSharpFinal\Scripts\GameScripts\Levels\LevelBase.cs

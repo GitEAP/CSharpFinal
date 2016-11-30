@@ -26,4 +26,4 @@ public class Player
 
 //Random number
 //Random random = new Random();
-//item.strength = random.next(5, 10);
+//item.strength = random.Next(5, 10);

@@ -2,7 +2,8 @@ using System;
 public class Game
 {
     public static Player viking = new Player();//Makes a new player.
-    public static Enemie Ogre = new Enemie();//Makes a new ogre enemie.
+    public static BattleMode battle = new BattleMode();
+
 
     //will make things for the game ie: player enemies items etc.
     //will start playing game.
@@ -11,8 +12,18 @@ public class Game
         Console.WriteLine("Game will now Start");
         viking.GetName();
 
-        
+        Console.WriteLine("you walk inside the house");
+        Random randomNum = new Random();
+        battle.Encounter(randomNum.Next(0, 1));
     }
+
+
+
+   
+
+
+
+
 
 }
 // Game
@@ -33,7 +44,7 @@ public class Game
 // battlemode
 // food for health regeneration
 // (optional) player enters a shop as a location
-// randomlly. player chooses to trade items to repair armor or get food or upgrade weapon.
+// (optional) randomlly. player chooses to trade items to repair armor or get food or upgrade weapon.
 
 
 // intro to game

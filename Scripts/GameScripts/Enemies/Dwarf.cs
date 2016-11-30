@@ -1,6 +1,7 @@
 public class Dwarf
 {
     public static Enemie DwarfEnemie = new Enemie();//Makes a new enemie.
+                   // Random randomNum = new Random();
 
     public Dwarf()
     {
