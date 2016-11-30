@@ -2,20 +2,18 @@ using System;
 public class Game
 {
     public static Player viking = new Player();//Makes a new player.
+    public static Enemie Ogre = new Enemie();//Makes a new ogre enemie.
 
     //will make things for the game ie: player enemies items etc.
-    public Game()
-    {
-
-    }
-
     //will start playing game.
     public void Play()
     {
         Console.WriteLine("Game will now Start");
         viking.GetName();
+
+        
     }
-    
+
 }
 // Game
 // make new player

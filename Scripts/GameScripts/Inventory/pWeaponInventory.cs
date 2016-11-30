@@ -2,11 +2,10 @@ using System.Collections.Generic;
 using System;
 public class pWeaponInventory
 {
-    //List
+    //List of the players weapon inventory
     public List<string> listOfWeapons;
 
-    //Array
-    // public string[] arrayOfWeapons = {"Gun", "Knife", "Bow"};
+
 
     public void RunList()
     {

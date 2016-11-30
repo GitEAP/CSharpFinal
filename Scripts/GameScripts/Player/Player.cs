@@ -2,8 +2,8 @@ using System;
 public class Player
 {
     //What each player needs.
-    public int health = 100;
-    public int armor = 0;
+    public int health;
+    public int armor;
     public string weaponEquiped;
     public int weaponDamage;
     public string[] weaponInventory;
@@ -11,13 +11,7 @@ public class Player
     public string[] itemInventory;
 
 
-    //constructor for Player
-    public Player()
-    {
-    }
-
-
-    public string WelcomePlayer(string _name)
+    private string WelcomePlayer(string _name)
     {
         return "Hello " + _name;
     }
@@ -27,15 +21,7 @@ public class Player
         Console.WriteLine("What is your name?");
         string myString = WelcomePlayer(Console.ReadLine());
         Console.WriteLine(myString);
-
-        if (myString == " ")
-        {
-            Console.WriteLine("What is your name?");
-            myString = WelcomePlayer(Console.ReadLine());
-            Console.WriteLine(myString);
-        }
     }
-
 }
 
 //Random number
