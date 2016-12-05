@@ -1,7 +1,7 @@
 using System;
 public class Game
 {
-    public static Player viking = new Player();//Makes a new player.
+    public static Player vikingPlayer = new Player();//Makes a new player.
     public static BattleMode battle = new BattleMode();
 
 
@@ -10,17 +10,13 @@ public class Game
     public void Play()
     {
         Console.WriteLine("Game will now Start");
-        viking.GetName();
+        vikingPlayer.GetName();
 
         Console.WriteLine("you walk inside the house");
+
         Random randomNum = new Random();
         battle.Encounter(randomNum.Next(0, 1));
     }
-
-
-
-   
-
 
 
 

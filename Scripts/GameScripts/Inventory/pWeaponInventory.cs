@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System;
-public class pWeaponInventory
+public class pWeaponInventory: Inventories
 {
     //List of the players weapon inventory
     public List<string> listOfWeapons;
