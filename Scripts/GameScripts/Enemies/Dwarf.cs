@@ -1,14 +1,15 @@
-public class Dwarf
+using System;
+public class Dwarf : Enemie
 {
-    public static Enemie DwarfEnemie = new Enemie();//Makes a new enemie.
-                   // Random randomNum = new Random();
+    Random randomNum = new Random();
+    public static Inventories weapon = new Inventories();//Makes a new enemie.
 
     public Dwarf()
     {
-        DwarfEnemie.health = 100;
-        DwarfEnemie.armor = 10;
-        DwarfEnemie.weaponEquiped = "two handed axe";// get random weapon from Inventories.cs
-        DwarfEnemie.weaponDamage = 14;
+        health = 100;
+        armor = 10;
+        weaponEquiped = weapon.arrayOfWeapons[randomNum.Next(0, (weapon.arrayOfWeapons.Length - 1))];// get random weapon from Inventories.cs
+        weaponDamage = randomNum.Next(10, 15);
     }
 }
 

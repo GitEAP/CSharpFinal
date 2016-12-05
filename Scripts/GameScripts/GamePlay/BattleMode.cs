@@ -1,8 +1,6 @@
 using System;
 public class BattleMode
 {
-
-
     public string myChoice;
     public static Enemie Ogre = new Ogre();//Makes a new ogre enemy.
 
@@ -13,8 +11,6 @@ public class BattleMode
         {
             case 0:
                 Console.WriteLine("You have encounter an Ogre");
-              Console.WriteLine("The enemy has " + Ogre.weaponEquiped);
-
                 battle();
                 break;
             default:
@@ -26,8 +22,10 @@ public class BattleMode
     public void battle()
     {
         Console.WriteLine("The enemy has " + Ogre.weaponEquiped);
+
         Console.WriteLine("Will you attack or run away");
         myChoice = Console.ReadLine();
+
         if (myChoice == "attack")
         {
             Ogre.health -= 5;
@@ -38,5 +36,4 @@ public class BattleMode
             Console.WriteLine("You ran away");
         }
     }
-
 }

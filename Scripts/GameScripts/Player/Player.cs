@@ -9,8 +9,7 @@ public class Player
     public string[] weaponInventory;
     public string[] foodInventory;
     public string[] itemInventory;
-
-
+    
     private string WelcomePlayer(string _name)
     {
         return "Hello " + _name;
