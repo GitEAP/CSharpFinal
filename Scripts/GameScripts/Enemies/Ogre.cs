@@ -11,7 +11,7 @@ public class Ogre : Enemie
         health = 100;
         armor = 10;
         weaponEquiped = weapon.arrayOfWeapons[randomNum.Next(0, (weapon.arrayOfWeapons.Length -1) )];// get random weapon from Inventories.cs
-        weaponDamage = randomNum.Next(1, 10);
+        weaponDamage = randomNum.Next(20, 35);
     }
 }
 

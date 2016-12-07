@@ -1,8 +1,9 @@
 using System;
 public class Game
 {
-    public static Player vikingPlayer = new Player();//Makes a new player.
+    public static Player vikingPlayer = new vikingPlayer();//Makes a new player.
     public static BattleMode battle = new BattleMode();
+    public static string myDirection;
 
 
     //will make things for the game ie: player enemies items etc.
@@ -14,8 +15,31 @@ public class Game
 
         Console.WriteLine("you walk inside the house");
 
+        Console.WriteLine("Which direction would you like to go: north, west, east, south");
+        myDirection = Console.ReadLine();
         Random randomNum = new Random();
-        battle.Encounter(randomNum.Next(0, 1));
+        vikingPlayer.health = 100;
+
+        if (myDirection == "north")
+        {
+            battle.Encounter(randomNum.Next(0, 1));
+        }
+        else if (myDirection == "west")
+        {
+            battle.Encounter(randomNum.Next(0, 1));
+        }
+        else if (myDirection == "east")
+        {
+
+        }
+        else if (myDirection == "south")
+        {
+
+        }
+        else
+        {
+
+        }
     }
 
 

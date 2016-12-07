@@ -1,19 +1,16 @@
 using System;
+using System.Collections.Generic;
+
 public class Player
 {
-    public static Inventories myWeapons = new pWeaponInventory();//Makes a new weapon Inventory for player.
-    public static Inventories myItems = new pItemInventory();//Makes a new weapon Inventory for player.
-    public static Inventories myFood = new pFoodInventory();//Makes a new weapon Inventory for player.
-
-
     //What the player needs.
     public int health;
     public int armor;
     public string weaponEquiped;
     public int weaponDamage;
-    public string[] weaponInventory;
-    public string[] foodInventory;
-    public string[] itemInventory;
+    public static List<string> weaponInventory;
+    public static List<string> foodInventory;
+    public static List<string> itemInventory;
 
     private string WelcomePlayer(string _name)
     {
