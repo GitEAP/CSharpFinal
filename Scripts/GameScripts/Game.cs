@@ -4,37 +4,47 @@ public class Game
     public static Player vikingPlayer = new vikingPlayer();//Makes a new player.
     public static BattleMode battle = new BattleMode();
     public static string myDirection;
+    public static int enemytype;
 
+    public void Start() {
+        while (vikingPlayer.health > 0) {
+            Play();
+        }
+        if (vikingPlayer.health == 0) {
+            Console.WriteLine("Game Over");
+        }
+    }
 
-    //will make things for the game ie: player enemies items etc.
+public Game() 
+{
+        Console.WriteLine("Game will now Start");
+        vikingPlayer.GetName();//gets players name.
+        Console.WriteLine("you walk inside the house");
+}
+
     //will start playing game.
     public void Play()
     {
-        Console.WriteLine("Game will now Start");
-        vikingPlayer.GetName();
-
-        Console.WriteLine("you walk inside the house");
-
         Console.WriteLine("Which direction would you like to go: north, west, east, south");
         myDirection = Console.ReadLine();
         Random randomNum = new Random();
-        vikingPlayer.health = 100;
-
+        //enemytype = randomNum.Next(0, 2);
+    
         if (myDirection == "north")
         {
-            battle.Encounter(randomNum.Next(0, 1));
+            battle.Encounter(randomNum.Next(0, 2));
         }
         else if (myDirection == "west")
         {
-            battle.Encounter(randomNum.Next(0, 1));
+            battle.Encounter(randomNum.Next(0, 2));
         }
         else if (myDirection == "east")
         {
-
+            battle.Encounter(randomNum.Next(0, 2));
         }
         else if (myDirection == "south")
         {
-
+            battle.Encounter(randomNum.Next(0, 2));
         }
         else
         {
