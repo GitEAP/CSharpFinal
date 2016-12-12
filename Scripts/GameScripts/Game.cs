@@ -6,6 +6,7 @@ public class Game
     public static string myDirection;
     public int theOdds;
     public string item;
+    public int chooseWeapon;
     Random randomNum = new Random();
 
     public void Start()
@@ -62,7 +63,10 @@ public class Game
         Console.WriteLine("What weapon will you choose");
         vikingPlayer.displayWeapons();
         //converts the string to an int. Assigns the weapon to the player.
-        vikingPlayer.assignWeapon(vikingPlayer.getWeaponNumber(Console.ReadLine()));
+        chooseWeapon = vikingPlayer.getWeaponNumber(Console.ReadLine());
+        vikingPlayer.assignWeapon(chooseWeapon);
+        Console.WriteLine("You are using a " + vikingPlayer.weaponEquiped);
+        
         battle.Encounter(randomNum.Next(0, 2));
     }//closes Play
 

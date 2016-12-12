@@ -31,7 +31,11 @@ public class BattleMode
 
                 while (Ogre1.health > 0 || Game.vikingPlayer.health > 0)
                 {
-                    if (Ogre1.health <= 0)
+                    if (myChoice == "run" || myChoice == "run away")
+                    {
+                        break;
+                    }
+                    else if (Ogre1.health <= 0)
                     {
                         Console.WriteLine("You killed the enemy");
                         break;
@@ -80,7 +84,6 @@ public class BattleMode
         else if (myChoice == "run away" || myChoice == "run")
         {
             Console.WriteLine("You ran away");
-            Ogre1.health = 0;
         }
         else if (myChoice == "eat")
         {
@@ -90,7 +93,7 @@ public class BattleMode
         {
             Game.vikingPlayer.displayItems();
             useableItem = Game.vikingPlayer.getItem();
-
+            
             if (theOdds == 0)
             {
                 Ogre1.health -= Game.vikingPlayer.weaponDamage;
@@ -103,6 +106,10 @@ public class BattleMode
                 Console.WriteLine("the enemy accepted the " + useableItem + "It made the enemy weaker");//gives feedback on the damage done.
                 Ogre1.weaponDamage = 15;
             }
+        }
+        else
+        {
+            Console.WriteLine("Not a valid command");
         }
     }//closes battle()
 }

@@ -33,6 +33,7 @@ public class Player
 
     public void displayWeapons()
     {
+        Console.WriteLine("My weapon inventory: ");
         foreach (string weapon in weaponInventory)
         {
             Console.WriteLine(weapon);
@@ -41,7 +42,6 @@ public class Player
     //when new weapon is found it adds it to the players inventory.
     public void findWeapons()
     {
-        Console.WriteLine("my weapons " + weaponInventory);
         foundItem = useableWeapons.arrayOfWeapons[randomNum.Next(0, useableWeapons.arrayOfWeapons.Length)];//gets a random weapon from useable weapons
         Console.WriteLine("You found a " + foundItem);
         vikingPlayer.weaponInventory.Add(foundItem);
@@ -75,37 +75,57 @@ public class Player
     }
     public void eatFood()
     {
-        foodInventory.Remove(Console.ReadLine());
-        health += 20;
-        if (health > 100)
+        if (foodInventory.Count == 0)
         {
-            health = 100;
+            Console.WriteLine("You don't have any food in your inventory");
+        }
+        else
+        {
+            foodInventory.Remove(Console.ReadLine());
+            health += 20;
+            Console.WriteLine("Your health has been increased");
+            if (health > 100)
+            {
+                health = 100;
+            }
+
         }
     }
     public void displayItems()
     {
-        foreach (string item in itemInventory)
+        if (itemInventory.Count == 0)
         {
-            Console.WriteLine(item);
+            Console.WriteLine("You don't have any items in your inventory");
+        }
+        else
+        {
+            foreach (string item in itemInventory)
+            {
+                Console.WriteLine(item);
+            }
+
         }
     }
     public string getItem()
     {
-        Console.WriteLine("Which Item do you want to use");
-        userItem = Console.ReadLine();
-        itemInventory.Remove(userItem);
+        if (itemInventory.Count == 0)
+        {
+            Console.WriteLine("Which Item do you want to use");
+            userItem = Console.ReadLine();
+            itemInventory.Remove(userItem);
+        }
         return userItem;
     }
     public void findFood()
     {
         foundItem = useableFood.arrayOfFood[randomNum.Next(0, useableFood.arrayOfFood.Length)];//gets a random weapon from useable weapons
-        Console.WriteLine("You found " + foundItem);
+        Console.WriteLine("and you found " + foundItem);
         vikingPlayer.foodInventory.Add(foundItem);
     }
     public void findItem()
     {
         foundItem = useableItems.arrayOfItems[randomNum.Next(0, useableItems.arrayOfItems.Length)];//gets a random weapon from useable weapons
-        Console.WriteLine("You found " + foundItem);
+        Console.WriteLine("and you found " + foundItem);
         vikingPlayer.itemInventory.Add(foundItem);
     }
 }
