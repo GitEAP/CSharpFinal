@@ -6,7 +6,7 @@ public class Game
     public static LevelBase cave = new CaveLevel();
     public static string myDirection;
     public int theOdds;
-
+    public bool weaponCount = true;
 
     public string item;
     public int chooseWeapon;
@@ -21,6 +21,7 @@ public class Game
         }
         if (vikingPlayer.health == 0)
         {
+            Console.WriteLine("******************************************************************************");
             Console.WriteLine("Game Over");
         }
     }
@@ -30,6 +31,8 @@ public class Game
         Console.WriteLine("Game will now Start");
         vikingPlayer.GetName();//gets players name.
         Console.WriteLine("you walk inside the house");
+        Console.WriteLine("******************************************************************************");
+
     }
     //will start playing game.
     public void Play()
@@ -37,17 +40,24 @@ public class Game
         chooseDirection();
         oddsOfFindingFood();
         oddsOfFindingItems();
+        Console.WriteLine("******************************************************************************");
         Console.WriteLine("What weapon will you choose");
         vikingPlayer.displayWeapons();
         //converts the string to an int. Assigns the weapon to the player.
         chooseWeapon = vikingPlayer.getWeaponNumber(Console.ReadLine());
+        Console.WriteLine("******************************************************************************");
+
         vikingPlayer.assignWeapon(chooseWeapon);
         Console.WriteLine("You are using a " + vikingPlayer.weaponEquiped);
 
-        if (theOdds == 0){//encounter ogre
-        battle.Encounter(randomNum.Next(0, 2), new Ogre());
-        }else {//encounter dwarf
-         battle.Encounter(randomNum.Next(0, 2), new Dwarf());
+        theOdds = randomNum.Next(0, 2);
+        if (theOdds == 0)
+        {//encounter ogre
+            battle.Encounter(randomNum.Next(0, 2), new Ogre());
+        }
+        else
+        {//encounter dwarf
+            battle.Encounter(randomNum.Next(0, 2), new Dwarf());
         }
     }//closes Play
     public void chooseDirection()
@@ -65,11 +75,11 @@ public class Game
                 oddsOfFinding();
                 break;
             case "east":
-                getCaveItems(cave.itemsAvailable.Length/2);
+                getCaveItems(cave.itemsAvailable.Length / 2);
                 oddsOfFinding();
                 break;
             case "south":
-                getCaveItems(cave.itemsAvailable.Length/2);
+                getCaveItems(cave.itemsAvailable.Length / 2);
                 oddsOfFinding();
                 break;
             default:
@@ -77,11 +87,18 @@ public class Game
                 chooseDirection();
                 break;
         }
-
-    }
+        //runs this code if the player does not have at least one weapon
+        //it avoids an exception later on.
+        weaponCount = vikingPlayer.checkWeapons();
+        if (weaponCount == false)//if there are 0 weapons in inventory.
+        {
+            chooseDirection();
+        }
+    }//closes chooseDirection
 
     public void oddsOfFinding()
     {
+        Console.WriteLine("******************************************************************************");
         theOdds = randomNum.Next(0, 2);
         switch (theOdds)
         {
@@ -90,7 +107,6 @@ public class Game
                 break;
             default:
                 Console.WriteLine("You did not find a weapon in the " + item);
-                chooseDirection();
                 break;
         }//closes switch
     }
@@ -121,8 +137,11 @@ public class Game
     }
     public void getCaveItems(int i)
     {
-        Console.WriteLine("You found a couple of objects in this area that you can check for stuff. They are: ");
-        for (i = 0; i < (cave.itemsAvailable.Length/2); i++)
+        Console.WriteLine("******************************************************************************");
+        Console.WriteLine("You found a couple of objects in this area that you can check for stuff.");
+        Console.WriteLine("They are: ");
+
+        for (i = 0; i < (cave.itemsAvailable.Length / 2); i++)
         {
             Console.WriteLine(cave.itemsAvailable[i]);
         }

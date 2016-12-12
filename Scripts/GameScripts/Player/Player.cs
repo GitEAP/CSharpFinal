@@ -39,6 +39,18 @@ public class Player
         {
             Console.WriteLine(weapon);
         }
+
+    }
+    public bool checkWeapons()
+    {
+        if (weaponInventory.Count == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
     //when new weapon is found it adds it to the players inventory.
     public void findWeapons()
@@ -113,7 +125,8 @@ public class Player
         if (itemInventory.Count == 0)
         {
         }
-        else {
+        else
+        {
             Console.WriteLine("Which Item do you want to use");
             userItem = Console.ReadLine();
             itemInventory.Remove(userItem);
