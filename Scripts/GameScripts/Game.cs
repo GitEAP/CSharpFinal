@@ -27,9 +27,19 @@ public class Game
         vikingPlayer.GetName();//gets players name.
         Console.WriteLine("you walk inside the house");
     }
-
     //will start playing game.
     public void Play()
+    {
+        chooseDirection();
+        Console.WriteLine("What weapon will you choose");
+        vikingPlayer.displayWeapons();
+        //converts the string to an int. Assigns the weapon to the player.
+        chooseWeapon = vikingPlayer.getWeaponNumber(Console.ReadLine());
+        vikingPlayer.assignWeapon(chooseWeapon);
+        Console.WriteLine("You are using a " + vikingPlayer.weaponEquiped);
+        battle.Encounter(randomNum.Next(0, 2));
+    }//closes Play
+    public void chooseDirection()
     {
         Console.WriteLine("Which direction would you like to go: north, west, east, south");
         myDirection = Console.ReadLine();
@@ -57,18 +67,10 @@ public class Game
                 break;
             default:
                 Console.WriteLine("Not a valid command");
-                Play();
+               chooseDirection();
                 break;
         }
-        Console.WriteLine("What weapon will you choose");
-        vikingPlayer.displayWeapons();
-        //converts the string to an int. Assigns the weapon to the player.
-        chooseWeapon = vikingPlayer.getWeaponNumber(Console.ReadLine());
-        vikingPlayer.assignWeapon(chooseWeapon);
-        Console.WriteLine("You are using a " + vikingPlayer.weaponEquiped);
-        
-        battle.Encounter(randomNum.Next(0, 2));
-    }//closes Play
+    }
 
     public void oddsOfFinding()
     {
@@ -79,8 +81,7 @@ public class Game
                 vikingPlayer.findWeapons();
                 break;
             default:
-                Console.WriteLine("You found nothing in the " + item);
-                Play();
+                Console.WriteLine("You did not find a weapon in the " + item);
                 break;
         }//closes switch
         oddsOfFindingFood();
@@ -98,7 +99,7 @@ public class Game
                 break;
         }//closes switch
     }
-        public void oddsOfFindingItems()
+    public void oddsOfFindingItems()
     {
         theOdds = randomNum.Next(0, 2);
         switch (theOdds)

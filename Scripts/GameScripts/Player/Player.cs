@@ -18,6 +18,7 @@ public class Player
     Random randomNum = new Random();
     public string foundItem;
     public string userItem;
+    public string myItem;
 
     private string WelcomePlayer(string _name)
     {
@@ -91,7 +92,7 @@ public class Player
 
         }
     }
-    public void displayItems()
+    public string displayItems()
     {
         if (itemInventory.Count == 0)
         {
@@ -103,13 +104,16 @@ public class Player
             {
                 Console.WriteLine(item);
             }
-
+            myItem = getItem();
         }
+        return myItem;
     }
     public string getItem()
     {
         if (itemInventory.Count == 0)
         {
+        }
+        else {
             Console.WriteLine("Which Item do you want to use");
             userItem = Console.ReadLine();
             itemInventory.Remove(userItem);
@@ -118,13 +122,13 @@ public class Player
     }
     public void findFood()
     {
-        foundItem = useableFood.arrayOfFood[randomNum.Next(0, useableFood.arrayOfFood.Length)];//gets a random weapon from useable weapons
+        foundItem = useableFood.arrayOfFood[randomNum.Next(0, useableFood.arrayOfFood.Length)];
         Console.WriteLine("and you found " + foundItem);
         vikingPlayer.foodInventory.Add(foundItem);
     }
     public void findItem()
     {
-        foundItem = useableItems.arrayOfItems[randomNum.Next(0, useableItems.arrayOfItems.Length)];//gets a random weapon from useable weapons
+        foundItem = useableItems.arrayOfItems[randomNum.Next(0, useableItems.arrayOfItems.Length)];
         Console.WriteLine("and you found " + foundItem);
         vikingPlayer.itemInventory.Add(foundItem);
     }
