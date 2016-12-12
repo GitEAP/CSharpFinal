@@ -3,11 +3,14 @@ public class Game
 {
     public static Player vikingPlayer = new vikingPlayer();//Makes a new player.
     public static BattleMode battle = new BattleMode();
+    public static LevelBase cave = new CaveLevel();
+    public static LevelBase oldHouse = new OldHouseLevel();
     public static string myDirection;
     public int theOdds;
     public string item;
     public int chooseWeapon;
     Random randomNum = new Random();
+
 
     public void Start()
     {
@@ -31,13 +34,20 @@ public class Game
     public void Play()
     {
         chooseDirection();
+        oddsOfFindingFood();
+        oddsOfFindingItems();
         Console.WriteLine("What weapon will you choose");
         vikingPlayer.displayWeapons();
         //converts the string to an int. Assigns the weapon to the player.
         chooseWeapon = vikingPlayer.getWeaponNumber(Console.ReadLine());
         vikingPlayer.assignWeapon(chooseWeapon);
         Console.WriteLine("You are using a " + vikingPlayer.weaponEquiped);
-        battle.Encounter(randomNum.Next(0, 2));
+
+        if (theOdds == 0){//encounter ogre
+        battle.Encounter(randomNum.Next(0, 2), new Ogre());
+        }else {//encounter dwarf
+         battle.Encounter(randomNum.Next(0, 2), new Dwarf());
+        }
     }//closes Play
     public void chooseDirection()
     {
@@ -46,30 +56,27 @@ public class Game
         switch (myDirection)
         {
             case "north":
-                Console.WriteLine("Do you want to check the chest, skeleton, or rock");
-                item = Console.ReadLine();
+                caveItems();
                 oddsOfFinding();
                 break;
             case "west":
-                Console.WriteLine("Do you want to check the chest, skeleton, or rock");
-                item = Console.ReadLine();
+                caveItems();
                 oddsOfFinding();
                 break;
             case "east":
-                Console.WriteLine("Do you want to check the chest, skeleton, or rock");
-                item = Console.ReadLine();
+                oldHouseItems();
                 oddsOfFinding();
                 break;
             case "south":
-                Console.WriteLine("Do you want to check the chest, skeleton, or rock");
-                item = Console.ReadLine();
+                oldHouseItems();
                 oddsOfFinding();
                 break;
             default:
                 Console.WriteLine("Not a valid command");
-               chooseDirection();
+                chooseDirection();
                 break;
         }
+
     }
 
     public void oddsOfFinding()
@@ -82,10 +89,9 @@ public class Game
                 break;
             default:
                 Console.WriteLine("You did not find a weapon in the " + item);
+                chooseDirection();
                 break;
         }//closes switch
-        oddsOfFindingFood();
-        oddsOfFindingItems();
     }
     public void oddsOfFindingFood()
     {
@@ -111,6 +117,18 @@ public class Game
                 Console.WriteLine("You did not find anything else");
                 break;
         }//closes switch
+    }
+    public void caveItems()
+    {
+        Console.WriteLine("You found a couple of objects in this area that you can check for stuff. Do you want to check the " + cave.itemsAvailable[0]
+        + ", " + cave.itemsAvailable[1] + ", or the " + cave.itemsAvailable[2]);
+        item = Console.ReadLine();
+    }
+    public void oldHouseItems()
+    {
+        Console.WriteLine("You found a couple of objects in this area that you can check for stuff. Do you want to check the " + oldHouse.itemsAvailable[0]
+        + ", " + oldHouse.itemsAvailable[1] + ", or the " + oldHouse.itemsAvailable[2]);
+        item = Console.ReadLine();
     }
 
 

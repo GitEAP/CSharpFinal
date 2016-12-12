@@ -4,7 +4,7 @@ public class OldHouseLevel : LevelBase
     {
         //places where player can check for items.
         environment = new string[] { };
-        itemsAvailable = new string[] { };
+        itemsAvailable = new string[] {"bookcase", "couch", "table" };
 
     }
 }

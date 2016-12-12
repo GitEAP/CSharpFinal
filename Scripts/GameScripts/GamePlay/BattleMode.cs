@@ -7,7 +7,7 @@ public class BattleMode
     public int theOdds;
     public string useableItem;
 
-    public Enemie Ogre1 = new Ogre();//Makes a new ogre enemy.
+    //public Enemie enemy = new Ogre();//Makes a new ogre enemy.
     //public Enemie Dwarf1 = new Dwarf();//Makes a new Dwarf enemy.
 
     // public static List<Enemie> Ogres;
@@ -20,21 +20,21 @@ public class BattleMode
     // }
 
 
-    public void Encounter(int i)
+    public void Encounter(int i, Enemie enemy)
     {
         switch (i)
         {
             case 0:
                 Console.WriteLine("You have encounter an Ogre");
-                Console.WriteLine("The Ogre has a " + Ogre1.weaponEquiped);
+                Console.WriteLine("The Ogre has a " + enemy.weaponEquiped);
 
-                while (Ogre1.health > 0 || Game.vikingPlayer.health > 0)
+                while (enemy.health > 0 || Game.vikingPlayer.health > 0)
                 {
                     if (myChoice == "run" || myChoice == "run away")
                     {
                         break;
                     }
-                    else if (Ogre1.health <= 0)
+                    else if (enemy.health <= 0)
                     {
                         Console.WriteLine("You killed the enemy");
                         break;
@@ -47,7 +47,7 @@ public class BattleMode
                     else
                     {
                         Random randomNum = new Random();
-                        battle();
+                        battle(enemy);
                     }
                 }
                 break;
@@ -56,7 +56,7 @@ public class BattleMode
                 break;
         }
     }
-    public void battle()
+    public void battle(Enemie enemy)
     {
         theOdds = randomNum.Next(0, 2);
 
@@ -67,14 +67,14 @@ public class BattleMode
             case "attack":
                 if (theOdds == 0)
                 {
-                    Ogre1.health -= Game.vikingPlayer.weaponDamage;
-                    Console.WriteLine("You attacked the Ogre.");
-                    Console.WriteLine("Enemy has " + Ogre1.health + " of Health");//displays the players total health
+                    enemy.health -= Game.vikingPlayer.weaponDamage;
+                    Console.WriteLine("You attacked the " + enemy);
+                    Console.WriteLine("Enemy has " + enemy.health + " of Health");//displays the players total health
                 }
                 else if (theOdds == 1)
                 {
-                    Game.vikingPlayer.health -= Ogre1.weaponDamage;
-                    Console.WriteLine("The Ogre attacked you. You lost " + Ogre1.weaponDamage + " of health");//gives feedback on the damage done.
+                    Game.vikingPlayer.health -= enemy.weaponDamage;
+                    Console.WriteLine("The " + enemy + " attacked you. You lost " + enemy.weaponDamage + " of health");//gives feedback on the damage done.
                     Console.WriteLine("you have " + Game.vikingPlayer.health + " of Health");//displays the players total health
                 }
                 break;
@@ -89,19 +89,20 @@ public class BattleMode
 
                 if (theOdds == 0)
                 {
-                    Ogre1.health -= Game.vikingPlayer.weaponDamage;
-                    Console.WriteLine("The enemy did not want your " + useableItem);
-                    Console.WriteLine("The Ogre attacked you. You lost " + Ogre1.weaponDamage + " of health");//gives feedback on the damage done.
+                    enemy.health -= Game.vikingPlayer.weaponDamage;
+                    Console.WriteLine("The " + enemy + " did not want your " + useableItem);
+                    Console.WriteLine("The " + enemy + " attacked you. You lost " + enemy.weaponDamage + " of health");//gives feedback on the damage done.
                     Console.WriteLine("you have " + Game.vikingPlayer.health + " of Health");//displays the players total health
                 }
                 else if (theOdds == 1)
                 {
-                    Console.WriteLine("the enemy accepted the " + useableItem + "It made the enemy weaker");//gives feedback on the damage done.
-                    Ogre1.weaponDamage = 15;
+                    Console.WriteLine("the " + enemy + " accepted the " + useableItem + "It made the enemy weaker");//gives feedback on the damage done.
+                    enemy.weaponDamage = 15;
                 }
                 break;
             default:
                 Console.WriteLine("Not a valid command");
+                battle(enemy);
                 break;
         }//closes switch
     }//closes battle()
