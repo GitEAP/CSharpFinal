@@ -4,9 +4,10 @@ public class Game
     public static Player vikingPlayer = new vikingPlayer();//Makes a new player.
     public static BattleMode battle = new BattleMode();
     public static LevelBase cave = new CaveLevel();
-    public static LevelBase oldHouse = new OldHouseLevel();
     public static string myDirection;
     public int theOdds;
+
+
     public string item;
     public int chooseWeapon;
     Random randomNum = new Random();
@@ -56,19 +57,19 @@ public class Game
         switch (myDirection)
         {
             case "north":
-                caveItems();
+                getCaveItems(0);
                 oddsOfFinding();
                 break;
             case "west":
-                caveItems();
+                getCaveItems(0);
                 oddsOfFinding();
                 break;
             case "east":
-                oldHouseItems();
+                getCaveItems(cave.itemsAvailable.Length/2);
                 oddsOfFinding();
                 break;
             case "south":
-                oldHouseItems();
+                getCaveItems(cave.itemsAvailable.Length/2);
                 oddsOfFinding();
                 break;
             default:
@@ -118,19 +119,16 @@ public class Game
                 break;
         }//closes switch
     }
-    public void caveItems()
+    public void getCaveItems(int i)
     {
-        Console.WriteLine("You found a couple of objects in this area that you can check for stuff. Do you want to check the " + cave.itemsAvailable[0]
-        + ", " + cave.itemsAvailable[1] + ", or the " + cave.itemsAvailable[2]);
+        Console.WriteLine("You found a couple of objects in this area that you can check for stuff. They are: ");
+        for (i = 0; i < (cave.itemsAvailable.Length/2); i++)
+        {
+            Console.WriteLine(cave.itemsAvailable[i]);
+        }
+        Console.WriteLine("What do you want to check?");
         item = Console.ReadLine();
     }
-    public void oldHouseItems()
-    {
-        Console.WriteLine("You found a couple of objects in this area that you can check for stuff. Do you want to check the " + oldHouse.itemsAvailable[0]
-        + ", " + oldHouse.itemsAvailable[1] + ", or the " + oldHouse.itemsAvailable[2]);
-        item = Console.ReadLine();
-    }
-
 
 }
 // Game
