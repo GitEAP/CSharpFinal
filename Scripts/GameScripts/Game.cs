@@ -5,22 +5,28 @@ public class Game
     public static BattleMode battle = new BattleMode();
     public static string myDirection;
     public static int enemytype;
+    public int theOdds;
+    public string item;
+    public string foundItem;
 
-    public void Start() {
-        while (vikingPlayer.health > 0) {
+    public void Start()
+    {
+        while (vikingPlayer.health > 0)
+        {
             Play();
         }
-        if (vikingPlayer.health == 0) {
+        if (vikingPlayer.health == 0)
+        {
             Console.WriteLine("Game Over");
         }
     }
 
-public Game() 
-{
+    public Game()
+    {
         Console.WriteLine("Game will now Start");
         vikingPlayer.GetName();//gets players name.
         Console.WriteLine("you walk inside the house");
-}
+    }
 
     //will start playing game.
     public void Play()
@@ -29,11 +35,29 @@ public Game()
         myDirection = Console.ReadLine();
         Random randomNum = new Random();
         //enemytype = randomNum.Next(0, 2);
-    
+
         if (myDirection == "north")
         {
-            battle.Encounter(randomNum.Next(0, 2));
+            Console.WriteLine("Do you want to check the chest, skeleton, or rock");
+            item = Console.ReadLine();
+            theOdds = randomNum.Next(0, 2);
+            switch (theOdds)
+            {
+                case 0:
+                    vikingPlayer.findWeapons();
+                    break;
+                case 1:
+                    Console.WriteLine("You found nothing in the " + item);
+                    break;
+            }
+            if (Player.weaponInventory.Count == 0)
+            {
+                Console.WriteLine("What weapon will you choose");
+                vikingPlayer.displayWeapons();
+                battle.Encounter(randomNum.Next(0, 2));
+            }
         }
+
         else if (myDirection == "west")
         {
             battle.Encounter(randomNum.Next(0, 2));
