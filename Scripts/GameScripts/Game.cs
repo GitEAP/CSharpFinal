@@ -4,10 +4,9 @@ public class Game
     public static Player vikingPlayer = new vikingPlayer();//Makes a new player.
     public static BattleMode battle = new BattleMode();
     public static string myDirection;
-    public static int enemytype;
     public int theOdds;
     public string item;
-    public string foundItem;
+    Random randomNum = new Random();
 
     public void Start()
     {
@@ -33,50 +32,81 @@ public class Game
     {
         Console.WriteLine("Which direction would you like to go: north, west, east, south");
         myDirection = Console.ReadLine();
-        Random randomNum = new Random();
-        //enemytype = randomNum.Next(0, 2);
+        switch (myDirection)
+        {
+            case "north":
+                Console.WriteLine("Do you want to check the chest, skeleton, or rock");
+                item = Console.ReadLine();
+                oddsOfFinding();
+                break;
+            case "west":
+                Console.WriteLine("Do you want to check the chest, skeleton, or rock");
+                item = Console.ReadLine();
+                oddsOfFinding();
+                break;
+            case "east":
+                Console.WriteLine("Do you want to check the chest, skeleton, or rock");
+                item = Console.ReadLine();
+                oddsOfFinding();
+                break;
+            case "south":
+                Console.WriteLine("Do you want to check the chest, skeleton, or rock");
+                item = Console.ReadLine();
+                oddsOfFinding();
+                break;
+            default:
+                Console.WriteLine("Not a valid command");
+                Play();
+                break;
+        }
+        Console.WriteLine("What weapon will you choose");
+        vikingPlayer.displayWeapons();
+        //converts the string to an int. Assigns the weapon to the player.
+        vikingPlayer.assignWeapon(vikingPlayer.getWeaponNumber(Console.ReadLine()));
+        battle.Encounter(randomNum.Next(0, 2));
+    }//closes Play
 
-        if (myDirection == "north")
+    public void oddsOfFinding()
+    {
+        theOdds = randomNum.Next(0, 2);
+        switch (theOdds)
         {
-            Console.WriteLine("Do you want to check the chest, skeleton, or rock");
-            item = Console.ReadLine();
-            theOdds = randomNum.Next(0, 2);
-            switch (theOdds)
-            {
-                case 0:
-                    vikingPlayer.findWeapons();
-                    break;
-                case 1:
-                    Console.WriteLine("You found nothing in the " + item);
-                    break;
-            }
-            if (Player.weaponInventory.Count == 0)
-            {
-                Console.WriteLine("What weapon will you choose");
-                vikingPlayer.displayWeapons();
-                battle.Encounter(randomNum.Next(0, 2));
-            }
-        }
-
-        else if (myDirection == "west")
-        {
-            battle.Encounter(randomNum.Next(0, 2));
-        }
-        else if (myDirection == "east")
-        {
-            battle.Encounter(randomNum.Next(0, 2));
-        }
-        else if (myDirection == "south")
-        {
-            battle.Encounter(randomNum.Next(0, 2));
-        }
-        else
-        {
-
-        }
+            case 0:
+                vikingPlayer.findWeapons();
+                break;
+            default:
+                Console.WriteLine("You found nothing in the " + item);
+                Play();
+                break;
+        }//closes switch
+        oddsOfFindingFood();
+        oddsOfFindingItems();
     }
-
-
+    public void oddsOfFindingFood()
+    {
+        theOdds = randomNum.Next(0, 2);
+        switch (theOdds)
+        {
+            case 0:
+                vikingPlayer.findFood();
+                break;
+            default:
+                break;
+        }//closes switch
+    }
+        public void oddsOfFindingItems()
+    {
+        theOdds = randomNum.Next(0, 2);
+        switch (theOdds)
+        {
+            case 0:
+                vikingPlayer.findItem();
+                break;
+            default:
+                Console.WriteLine("You did not find anything else");
+                break;
+        }//closes switch
+    }
 
 
 }
