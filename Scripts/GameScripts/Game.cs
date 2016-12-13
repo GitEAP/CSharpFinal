@@ -9,9 +9,7 @@ public class Game
     public bool weaponCount = true;
 
     public string item;
-    public int chooseWeapon;
     Random randomNum = new Random();
-
 
     public void Start()
     {
@@ -19,20 +17,26 @@ public class Game
         {
             Play();
         }
-        if (vikingPlayer.health == 0)
+        if (vikingPlayer.health <= 0)
         {
             Console.WriteLine("******************************************************************************");
+            Console.WriteLine("The enemy killed you.");
             Console.WriteLine("Game Over");
         }
     }
-
     public Game()
     {
-        Console.WriteLine("Game will now Start");
+        Console.WriteLine("It is the year 837 CE. It is that Viking age. You live in a small town in Scandinavia. In the recent months the town has been attacked by monsters. Until known you have not been affected.");
         vikingPlayer.GetName();//gets players name.
-        Console.WriteLine("you walk inside the house");
         Console.WriteLine("******************************************************************************");
-
+        Console.WriteLine("You live with your father in a farm. You earn your living by raising livestock. This has been a hard year for you. Your family does not have any more money. Your father was going to sell the only pig you owned but one of the monsters stole your pig. You decided to go out and find your pig. ");
+        Console.WriteLine("******************************************************************************");
+        Console.WriteLine("Before you leave for your adventure your father gave you an armor set that used to be your grandfathers.");
+        Console.WriteLine("You now have: " + vikingPlayer.armor + "% of armor.");
+        Console.WriteLine("Now you need to find a weapon for your adventure.");
+        Console.WriteLine("The next morning you leave for your adventure.");
+        Console.WriteLine("A few hours later you arrive at a cave. You see pig tracks going inside the cave. You decide to go inside the cave.");
+        Console.WriteLine("******************************************************************************");
     }
     //will start playing game.
     public void Play()
@@ -40,15 +44,6 @@ public class Game
         chooseDirection();
         oddsOfFindingFood();
         oddsOfFindingItems();
-        // Console.WriteLine("******************************************************************************");
-        // Console.WriteLine("What weapon will you choose");
-        // vikingPlayer.displayWeapons();
-        // //converts the string to an int. Assigns the weapon to the player.
-        // chooseWeapon = vikingPlayer.getWeaponNumber(Console.ReadLine());
-        // Console.WriteLine("******************************************************************************");
-
-        // vikingPlayer.assignWeapon(chooseWeapon);
-        // Console.WriteLine("You are using a " + vikingPlayer.weaponEquiped);
 
         theOdds = randomNum.Next(0, 2);
         if (theOdds == 0)
@@ -154,10 +149,9 @@ public class Game
                 Console.WriteLine(cave.itemsAvailable[i]);
             }
         }
-        Console.WriteLine("What do you want to check?");
+        Console.WriteLine("What do you want to check?(type the name of the object)");
         item = Console.ReadLine();
     }
-
 }
 // Game
 // make new player

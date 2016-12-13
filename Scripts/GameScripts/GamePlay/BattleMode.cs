@@ -9,7 +9,7 @@ public class BattleMode
     public void chooseMyWeapon()
     {
         Console.WriteLine("******************************************************************************");
-        Console.WriteLine("What weapon will you choose?");
+        Console.WriteLine("What weapon will you choose? (type the name of the weapon in your inventory)");
         Game.vikingPlayer.displayWeapons();
         //converts the string to an int. Assigns the weapon to the player.
         chooseWeapon = Game.vikingPlayer.getWeaponNumber(Console.ReadLine());
@@ -23,12 +23,12 @@ public class BattleMode
         {
             case 0:
                 Console.WriteLine("******************************************************************************");
-                Console.WriteLine("You have encounter an " + enemy);
+                Console.WriteLine("You have encounter an " + enemy + "!!!!!!!!!!!!");
                 Console.WriteLine("The " + enemy + " has a " + enemy.weaponEquiped);
 
                 chooseMyWeapon();//player chooses a weapon
 
-                while (enemy.health > 0 || Game.vikingPlayer.health > 0)
+                while (enemy.health >= 0 || Game.vikingPlayer.health >= 0)
                 {
                     if (myChoice == "run" || myChoice == "run away")
                     {
@@ -38,26 +38,17 @@ public class BattleMode
                     else if (enemy.health <= 0)
                     {
                         Console.WriteLine("You killed the " + enemy);
-                        Console.WriteLine("Your weapon broke!");
+                        Console.WriteLine("Your weapon broke! and you now have " + Game.vikingPlayer.health + "% of health.");
                         vikingPlayer.weaponInventory.Remove(Game.vikingPlayer.weaponEquiped);
-                        Console.WriteLine("******************************************************************************");
-
-                        break;
-                    }
-                    else if (Game.vikingPlayer.health <= 0 && Game.vikingPlayer.armor <= 0)
-                    {
-                        Console.WriteLine("The " + enemy + " killed you");
                         Console.WriteLine("******************************************************************************");
 
                         break;
                     }
                     else if (Game.vikingPlayer.health <= 0)
                     {
-                        Game.vikingPlayer.health += Game.vikingPlayer.armor;
-                        Console.WriteLine("You got extra health from your armor");
-                        Console.WriteLine("******************************************************************************");
-
+                        break;
                     }
+
                     else
                     {
                         Random randomNum = new Random();
@@ -66,7 +57,9 @@ public class BattleMode
                 }
                 break;
             default:
-                Console.WriteLine("You encounter nothing");
+                Console.WriteLine("You decided to keep moving to the next area.");
+                Console.WriteLine("******************************************************************************");
+
                 break;
         }
     }
@@ -74,7 +67,7 @@ public class BattleMode
     {
         theOdds = randomNum.Next(0, 2);
         Console.WriteLine("******************************************************************************");
-        Console.WriteLine("Will you 'attack', 'run away', 'eat' food, use 'item', 'change' weapon");
+        Console.WriteLine("Will you 'attack', 'run away', 'eat' food, use 'item', 'change' weapon (type the word(s) inside the ' ')");
         myChoice = Console.ReadLine();
         switch (myChoice)
         {
@@ -87,8 +80,9 @@ public class BattleMode
                 }
                 else if (theOdds == 1)
                 {
-                    Game.vikingPlayer.health -= enemy.weaponDamage;
-                    Console.WriteLine("The " + enemy + " attacked you. You lost " + enemy.weaponDamage + "% of health");//gives feedback on the damage done.
+                    Console.WriteLine("You missed and the " + enemy + " attacked you. You lost " + enemy.weaponDamage + "% of health");//gives feedback on the damage done.
+                    //checks to see if you have armor
+                    checkArmor(enemy);
                     Console.WriteLine("you have " + Game.vikingPlayer.health + "% of Health");//displays the players total health
                 }
                 break;
@@ -115,10 +109,10 @@ public class BattleMode
                 }
                 else if (theOdds == 0)
                 {
-                    Game.vikingPlayer.health -= enemy.weaponDamage;
                     Console.WriteLine("******************************************************************************");
                     Console.WriteLine("The " + enemy + " did not want your " + useableItem);
-                    Console.WriteLine("The " + enemy + " attacked you. You lost " + enemy.weaponDamage + "% of health");//gives feedback on the damage done.
+                    Console.WriteLine("The " + enemy + " attacked you");
+                    checkArmor(enemy);
                     Console.WriteLine("you have " + Game.vikingPlayer.health + "% of Health");//displays the players total health
                 }
                 else if (theOdds == 1)
@@ -142,4 +136,42 @@ public class BattleMode
                 break;
         }//closes switch
     }//closes battle()
+
+    public void checkArmor(Enemie enemy)
+    {
+        if (Game.vikingPlayer.health <= 40)
+        {
+            Console.WriteLine("Your health % is in a critical level!");//Gives player a warning
+            //if it's 0 or negative it sets it to 0(armor)
+            if (Game.vikingPlayer.armor <= 0)
+            {
+                Game.vikingPlayer.armor = 0;
+                Console.WriteLine("Your armor broke!");
+                Game.vikingPlayer.health -= enemy.weaponDamage;
+
+            }
+            //if it's zero it tells the player they don't have any armor
+            else if (Game.vikingPlayer.armor == 0)
+            {
+                Console.WriteLine("You don't have any armor.");
+                Game.vikingPlayer.health -= enemy.weaponDamage;
+
+
+            }
+            //if they do have armor they get half the damage and the other half is applied to the armor
+            else
+            {
+                Console.WriteLine("Your armor decreased the damage.");
+                Game.vikingPlayer.armor -= (enemy.weaponDamage / 2);
+                Console.WriteLine("You now have " + Game.vikingPlayer.armor + "% of armor");
+                Game.vikingPlayer.health -= (enemy.weaponDamage / 2);
+            }
+        }
+        //if your health is not in a critical level apply normal damage
+        else
+        {
+            Game.vikingPlayer.health -= enemy.weaponDamage;
+
+        }
+    }
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-
 public class Player
 {
     public static Inventories useableWeapons = new Inventories();//Inventory of useableWeapons for player.
@@ -22,7 +21,7 @@ public class Player
 
     private string WelcomePlayer(string _name)
     {
-        return "Hello " + _name;
+        return ("Hello " + _name + " the Viking");
     }
 
     public void GetName()
@@ -61,7 +60,7 @@ public class Player
     public void assignWeapon(int weaponNumber)
     {
         weaponEquiped = useableWeapons.arrayOfWeapons[weaponNumber];
-        weaponDamage = randomNum.Next(1, 50);
+        weaponDamage = randomNum.Next(15, 40);
     }
     public int getWeaponNumber(string weapon)
     {
@@ -89,8 +88,6 @@ public class Player
     {
         if (foodInventory.Count != 0)
         {
-        
-        
             foodInventory.Remove(Console.ReadLine());
             health += 20;
             Console.WriteLine("Your health has been increased");
@@ -98,7 +95,6 @@ public class Player
             {
                 health = 100;
             }
-
         }
     }
     public void displayFood()
@@ -114,7 +110,7 @@ public class Player
             {
                 Console.WriteLine(food);
             }
-            Console.WriteLine("What food do you want to eat");
+            Console.WriteLine("What food do you want to eat (type the name of the food in your inventory)");
         }
         
     }
@@ -141,7 +137,7 @@ public class Player
     {
         if (itemInventory.Count != 0)
         {
-            Console.WriteLine("Which Item do you want to use");
+            Console.WriteLine("Which Item do you want to use (type the name of the item in your inventory)");
             userItem = Console.ReadLine();
             itemInventory.Remove(userItem);
         }
@@ -160,9 +156,3 @@ public class Player
         vikingPlayer.itemInventory.Add(foundItem);
     }
 }
-
-
-
-//Random number
-//Random random = new Random();
-//item.strength = random.Next(5, 10);
