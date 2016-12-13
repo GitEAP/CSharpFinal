@@ -40,15 +40,15 @@ public class Game
         chooseDirection();
         oddsOfFindingFood();
         oddsOfFindingItems();
-        Console.WriteLine("******************************************************************************");
-        Console.WriteLine("What weapon will you choose");
-        vikingPlayer.displayWeapons();
-        //converts the string to an int. Assigns the weapon to the player.
-        chooseWeapon = vikingPlayer.getWeaponNumber(Console.ReadLine());
-        Console.WriteLine("******************************************************************************");
+        // Console.WriteLine("******************************************************************************");
+        // Console.WriteLine("What weapon will you choose");
+        // vikingPlayer.displayWeapons();
+        // //converts the string to an int. Assigns the weapon to the player.
+        // chooseWeapon = vikingPlayer.getWeaponNumber(Console.ReadLine());
+        // Console.WriteLine("******************************************************************************");
 
-        vikingPlayer.assignWeapon(chooseWeapon);
-        Console.WriteLine("You are using a " + vikingPlayer.weaponEquiped);
+        // vikingPlayer.assignWeapon(chooseWeapon);
+        // Console.WriteLine("You are using a " + vikingPlayer.weaponEquiped);
 
         theOdds = randomNum.Next(0, 2);
         if (theOdds == 0)
@@ -135,15 +135,24 @@ public class Game
                 break;
         }//closes switch
     }
-    public void getCaveItems(int i)
+    public void getCaveItems(int j)
     {
         Console.WriteLine("******************************************************************************");
         Console.WriteLine("You found a couple of objects in this area that you can check for stuff.");
         Console.WriteLine("They are: ");
-
-        for (i = 0; i < (cave.itemsAvailable.Length / 2); i++)
+        if (j == 0)
         {
-            Console.WriteLine(cave.itemsAvailable[i]);
+            for (int i = j; i < (cave.itemsAvailable.Length / 2); i++)
+            {
+                Console.WriteLine(cave.itemsAvailable[i]);
+            }
+        }
+        else if (j == 3)
+        {
+            for (int i = j; i < cave.itemsAvailable.Length; i++)
+            {
+                Console.WriteLine(cave.itemsAvailable[i]);
+            }
         }
         Console.WriteLine("What do you want to check?");
         item = Console.ReadLine();

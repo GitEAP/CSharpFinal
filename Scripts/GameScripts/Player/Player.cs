@@ -39,7 +39,6 @@ public class Player
         {
             Console.WriteLine(weapon);
         }
-
     }
     public bool checkWeapons()
     {
@@ -88,12 +87,10 @@ public class Player
     }
     public void eatFood()
     {
-        if (foodInventory.Count == 0)
+        if (foodInventory.Count != 0)
         {
-            Console.WriteLine("You don't have any food in your inventory");
-        }
-        else
-        {
+        
+        
             foodInventory.Remove(Console.ReadLine());
             health += 20;
             Console.WriteLine("Your health has been increased");
@@ -104,28 +101,45 @@ public class Player
 
         }
     }
+    public void displayFood()
+    {
+        if (foodInventory.Count == 0)
+        {
+            Console.WriteLine("You don't have any food in your inventory");
+        }
+        else
+        {
+            Console.WriteLine("My food inventory: ");
+            foreach (string food in foodInventory)
+            {
+                Console.WriteLine(food);
+            }
+            Console.WriteLine("What food do you want to eat");
+        }
+        
+    }
     public string displayItems()
     {
         if (itemInventory.Count == 0)
         {
-            Console.WriteLine("You don't have any items in your inventory");
+            myItem = null;
         }
         else
         {
+            Console.WriteLine("My item inventory: ");
             foreach (string item in itemInventory)
             {
                 Console.WriteLine(item);
             }
             myItem = getItem();
+            
         }
         return myItem;
     }
+    
     public string getItem()
     {
-        if (itemInventory.Count == 0)
-        {
-        }
-        else
+        if (itemInventory.Count != 0)
         {
             Console.WriteLine("Which Item do you want to use");
             userItem = Console.ReadLine();
